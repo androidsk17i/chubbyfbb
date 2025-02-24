@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Prompt Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Photo Prompt Generator</h1>
+        
+        <div class="controls">
+            <div class="buttons">
+                <button id="generateBtn">Generate Selected</button>
+                <button id="randomBtn">Random Generate</button>
+            </div>
+            
+            <div class="category-controls">
+                <div class="category-group">
+                    <label>Base Prompt</label>
+                    <select data-category="basePrompt">
+                        <option value="random">Random</option>
+                    </select>
+                </div>
+                <div class="category-group">
+                    <label>Shot Type</label>
+                    <select data-category="shotType">
+                        <option value="random">Random</option>
+                    </select>
+                </div>
+                <div class="category-group">
+                    <label>Pose</label>
+                    <select data-category="pose">
+                        <option value="random">Random</option>
+                    </select>
+                </div>
+                <div class="category-group">
+                    <label>Physique</label>
+                    <select data-category="physique">
+                        <option value="random">Random</option>
+                    </select>
+                </div>
+                <div class="category-group">
+                    <label>Lighting</label>
+                    <select data-category="lighting">
+                        <option value="random">Random</option>
+                    </select>
+                </div>
+                <div class="category-group">
+                    <label>Scene</label>
+                    <select data-category="scene">
+                        <option value="random">Random</option>
+                    </select>
+                </div>
+                <div class="category-group">
+                    <label>Camera</label>
+                    <select data-category="camera">
+                        <option value="random">Random</option>
+                    </select>
+                </div>
+                <div class="category-group">
+                    <label>Clothing</label>
+                    <select data-category="clothing">
+                        <option value="random">Random</option>
+                    </select>
+                </div>
+                <div class="category-group">
+                    <label>Expression</label>
+                    <select data-category="expression">
+                        <option value="random">Random</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="output">
+            <div id="promptOutput"></div>
+            <button id="copyBtn">Copy Prompt</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

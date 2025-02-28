@@ -89,6 +89,18 @@ document.addEventListener('DOMContentLoaded', () => {
             "mixed lighting", "dynamic lighting", "controlled lighting",
             "artistic lighting", "mood lighting", "complementary lighting",
             "enhanced lighting", "optimal lighting", "perfect lighting"
+        ],
+        faceTypes: [
+            "cute feminine face", "delicate feminine features", "soft feminine features",
+            "gentle feminine face", "pretty feminine face", "beautiful feminine features",
+            "charming feminine face", "lovely feminine features", "graceful feminine face",
+            "elegant feminine features"
+        ],
+        hairStyles: [
+            "long flowing black hair", "long straight black hair", "long wavy black hair",
+            "long silky black hair", "long lustrous black hair", "long smooth black hair",
+            "long glossy black hair", "long sleek black hair", "long shiny black hair",
+            "long beautiful black hair"
         ]
     };
 
@@ -128,6 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const lightingSelect = document.getElementById('lighting');
         const samplerSelect = document.getElementById('sampler');
         const sizeSelect = document.getElementById('size');
+        const faceTypeSelect = document.getElementById('faceType');
+        const hairStyleSelect = document.getElementById('hairStyle');
 
         // Set random selected index for each select element
         shotTypeSelect.selectedIndex = Math.floor(Math.random() * shotTypeSelect.options.length);
@@ -137,6 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
         poseSelect.selectedIndex = Math.floor(Math.random() * poseSelect.options.length);
         locationSelect.selectedIndex = Math.floor(Math.random() * locationSelect.options.length);
         lightingSelect.selectedIndex = Math.floor(Math.random() * lightingSelect.options.length);
+        faceTypeSelect.selectedIndex = Math.floor(Math.random() * faceTypeSelect.options.length);
+        hairStyleSelect.selectedIndex = Math.floor(Math.random() * hairStyleSelect.options.length);
         
         // Randomize checkboxes
         document.getElementById('sweat').checked = Math.random() < 0.7;
@@ -157,6 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function generatePrompt() {
         const shotType = document.getElementById('shotType').options[document.getElementById('shotType').selectedIndex].value;
         const age = document.getElementById('age').value;
+        const faceType = document.getElementById('faceType').options[document.getElementById('faceType').selectedIndex].value;
+        const hairStyle = document.getElementById('hairStyle').options[document.getElementById('hairStyle').selectedIndex].value;
         const buildType = document.getElementById('buildType').options[document.getElementById('buildType').selectedIndex].value;
         const clothing = document.getElementById('clothing').options[document.getElementById('clothing').selectedIndex].value;
         const expression = document.getElementById('expression').options[document.getElementById('expression').selectedIndex].value;
@@ -182,6 +200,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (shotType && shotType !== "undefined") promptParts.push(shotType);
         // Add non-empty components with cute and chubby description
         if (age) promptParts.push(`A cute and chubby ${age}-year-old Japanese woman bodybuilder`);
+        if (faceType && faceType !== "undefined") promptParts.push(faceType);
+        if (hairStyle && hairStyle !== "undefined") promptParts.push(hairStyle);
         promptParts.push(getRandomItem(variations.bodyFeatures));
         if (buildType && buildType !== "undefined") promptParts.push(buildType);
         if (clothing && clothing !== "undefined") promptParts.push(clothing);

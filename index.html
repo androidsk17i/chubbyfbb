@@ -3,80 +3,337 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Prompt Generator</title>
+    <title>JuggernautXL Prompt Generator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Photo Prompt Generator</h1>
-        
-        <div class="controls">
-            <div class="buttons">
-                <button id="generateBtn">Generate Selected</button>
-                <button id="randomBtn">Random Generate</button>
+        <h1>JuggernautXL Prompt Generator</h1>
+        <div class="prompt-builder">
+            <div class="section">
+                <h2>Subject Characteristics</h2>
+                <div class="input-group">
+                    <label>Shot Type:</label>
+                    <select id="shotType">
+                        <option value="close-up portrait">Close-up portrait</option>
+                        <option value="medium shot">Medium shot</option>
+                        <option value="full body shot">Full body shot</option>
+                        <option value="three-quarter view">Three-quarter view</option>
+                        <option value="side profile">Side profile</option>
+                        <option value="candid shot">Candid shot</option>
+                        <option value="dynamic angle">Dynamic angle</option>
+                        <option value="low angle shot">Low angle shot</option>
+                        <option value="high angle shot">High angle shot</option>
+                        <option value="eye-level shot">Eye-level shot</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Age:</label>
+                    <input type="number" id="age" value="40" min="18" max="100">
+                </div>
+                <div class="input-group">
+                    <label>Build Type:</label>
+                    <select id="buildType">
+                        <option value="chubby yet muscular">Chubby yet muscular</option>
+                        <option value="very muscular">Very muscular</option>
+                        <option value="moderately muscular">Moderately muscular</option>
+                        <option value="powerfully built">Powerfully built</option>
+                        <option value="athletically toned">Athletically toned</option>
+                        <option value="thick and strong">Thick and strong</option>
+                        <option value="bulky and powerful">Bulky and powerful</option>
+                        <option value="densely muscled">Densely muscled</option>
+                        <option value="heavily muscled">Heavily muscled</option>
+                        <option value="robust and muscular">Robust and muscular</option>
+                        <option value="solidly built">Solidly built</option>
+                        <option value="stoutly muscular">Stoutly muscular</option>
+                        <option value="broadly muscular">Broadly muscular</option>
+                        <option value="compactly muscular">Compactly muscular</option>
+                        <option value="massively built">Massively built</option>
+                        <option value="thickly muscled">Thickly muscled</option>
+                        <option value="substantially muscular">Substantially muscular</option>
+                        <option value="impressively muscular">Impressively muscular</option>
+                        <option value="prominently muscular">Prominently muscular</option>
+                        <option value="noticeably muscular">Noticeably muscular</option>
+                        <option value="distinctly muscular">Distinctly muscular</option>
+                        <option value="evidently muscular">Evidently muscular</option>
+                        <option value="visibly strong">Visibly strong</option>
+                        <option value="clearly muscular">Clearly muscular</option>
+                        <option value="unmistakably muscular">Unmistakably muscular</option>
+                        <option value="decidedly muscular">Decidedly muscular</option>
+                        <option value="markedly muscular">Markedly muscular</option>
+                        <option value="obviously strong">Obviously strong</option>
+                        <option value="undeniably muscular">Undeniably muscular</option>
+                        <option value="definitively muscular">Definitively muscular</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Clothing:</label>
+                    <select id="clothing">
+                        <option value="wearing a stylish bikini">Stylish bikini</option>
+                        <option value="in an elegant lingerie set">Elegant lingerie set</option>
+                        <option value="wearing a lace-trimmed bikini">Lace-trimmed bikini</option>
+                        <option value="in a revealing swimsuit">Revealing swimsuit</option>
+                        <option value="wearing a delicate lingerie piece">Delicate lingerie piece</option>
+                        <option value="in a fashionable two-piece">Fashionable two-piece</option>
+                        <option value="wearing a designer swimwear">Designer swimwear</option>
+                        <option value="in an intricate lingerie ensemble">Intricate lingerie ensemble</option>
+                        <option value="wearing a chic bathing suit">Chic bathing suit</option>
+                        <option value="in a sophisticated bikini set">Sophisticated bikini set</option>
+                        <option value="wearing a luxurious lingerie set">Luxurious lingerie set</option>
+                        <option value="in a trendy swimwear">Trendy swimwear</option>
+                        <option value="wearing a glamorous beachwear">Glamorous beachwear</option>
+                        <option value="in an alluring swimsuit">Alluring swimsuit</option>
+                        <option value="wearing a refined bikini">Refined bikini</option>
+                        <option value="in an exquisite lingerie piece">Exquisite lingerie piece</option>
+                        <option value="wearing a premium swimwear">Premium swimwear</option>
+                        <option value="in a tasteful two-piece">Tasteful two-piece</option>
+                        <option value="wearing an upscale bathing suit">Upscale bathing suit</option>
+                        <option value="in a high-end bikini">High-end bikini</option>
+                        <option value="wearing a quality lingerie set">Quality lingerie set</option>
+                        <option value="in a flattering swimsuit">Flattering swimsuit</option>
+                        <option value="wearing an attractive beachwear">Attractive beachwear</option>
+                        <option value="in a well-fitted bikini">Well-fitted bikini</option>
+                        <option value="wearing a graceful lingerie piece">Graceful lingerie piece</option>
+                        <option value="in a beautiful swimwear">Beautiful swimwear</option>
+                        <option value="wearing an elegant two-piece">Elegant two-piece</option>
+                        <option value="in a charming bathing suit">Charming bathing suit</option>
+                        <option value="wearing a refined swimsuit">Refined swimsuit</option>
+                        <option value="in a sophisticated beachwear">Sophisticated beachwear</option>
+                        <option value="nude">Nude</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Expression:</label>
+                    <select id="expression">
+                        <option value="confident yet friendly">Confident yet friendly</option>
+                        <option value="determined">Determined</option>
+                        <option value="smiling">Smiling</option>
+                        <option value="focused">Focused</option>
+                        <option value="cheerful">Cheerful</option>
+                        <option value="proud">Proud</option>
+                        <option value="enthusiastic">Enthusiastic</option>
+                        <option value="passionate">Passionate</option>
+                        <option value="serene">Serene</option>
+                        <option value="composed">Composed</option>
+                        <option value="radiating strength">Radiating strength</option>
+                        <option value="beaming">Beaming</option>
+                        <option value="self-assured">Self-assured</option>
+                        <option value="content">Content</option>
+                        <option value="peaceful">Peaceful</option>
+                        <option value="energetic">Energetic</option>
+                        <option value="vibrant">Vibrant</option>
+                        <option value="spirited">Spirited</option>
+                        <option value="positive">Positive</option>
+                        <option value="warm">Warm</option>
+                        <option value="welcoming">Welcoming</option>
+                        <option value="approachable">Approachable</option>
+                        <option value="pleasant">Pleasant</option>
+                        <option value="gentle">Gentle</option>
+                        <option value="kind">Kind</option>
+                        <option value="happy">Happy</option>
+                        <option value="joyful">Joyful</option>
+                        <option value="satisfied">Satisfied</option>
+                        <option value="fulfilled">Fulfilled</option>
+                        <option value="accomplished">Accomplished</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Pose:</label>
+                    <select id="pose">
+                        <option value="standing casually">Standing casually</option>
+                        <option value="sitting relaxed">Sitting relaxed</option>
+                        <option value="leaning against a wall">Leaning against a wall</option>
+                        <option value="walking casually">Walking casually</option>
+                        <option value="hands on hips">Hands on hips</option>
+                        <option value="arms crossed">Arms crossed</option>
+                        <option value="sitting on a bench">Sitting on a bench</option>
+                        <option value="stretching casually">Stretching casually</option>
+                        <option value="waving friendly">Waving friendly</option>
+                        <option value="casual stance">Casual stance</option>
+                        <option value="resting on a chair">Resting on a chair</option>
+                        <option value="lounging comfortably">Lounging comfortably</option>
+                        <option value="standing with hands in pockets">Standing with hands in pockets</option>
+                        <option value="casual walking pose">Casual walking pose</option>
+                        <option value="relaxed standing pose">Relaxed standing pose</option>
+                        <option value="sitting cross-legged">Sitting cross-legged</option>
+                        <option value="leaning forward slightly">Leaning forward slightly</option>
+                        <option value="standing with one hand on hip">Standing with one hand on hip</option>
+                        <option value="casual lean">Casual lean</option>
+                        <option value="relaxed stance">Relaxed stance</option>
+                        <option value="natural standing pose">Natural standing pose</option>
+                        <option value="gentle stretch">Gentle stretch</option>
+                        <option value="casual sitting">Casual sitting</option>
+                        <option value="relaxed walking">Relaxed walking</option>
+                        <option value="natural pose">Natural pose</option>
+                        <option value="comfortable stance">Comfortable stance</option>
+                        <option value="easy pose">Easy pose</option>
+                        <option value="relaxed position">Relaxed position</option>
+                        <option value="natural stance">Natural stance</option>
+                        <option value="casual posture">Casual posture</option>
+                    </select>
+                </div>
             </div>
-            
-            <div class="category-controls">
-                <div class="category-group">
-                    <label>Base Prompt</label>
-                    <select data-category="basePrompt">
-                        <option value="random">Random</option>
-                    </select>
-                </div>
-                <div class="category-group">
-                    <label>Shot Type</label>
-                    <select data-category="shotType">
-                        <option value="random">Random</option>
-                    </select>
-                </div>
-                <div class="category-group">
-                    <label>Pose</label>
-                    <select data-category="pose">
-                        <option value="random">Random</option>
-                    </select>
-                </div>
-                <div class="category-group">
-                    <label>Physique</label>
-                    <select data-category="physique">
-                        <option value="random">Random</option>
-                    </select>
-                </div>
-                <div class="category-group">
-                    <label>Lighting</label>
-                    <select data-category="lighting">
-                        <option value="random">Random</option>
-                    </select>
-                </div>
-                <div class="category-group">
-                    <label>Scene</label>
-                    <select data-category="scene">
-                        <option value="random">Random</option>
-                    </select>
-                </div>
-                <div class="category-group">
-                    <label>Camera</label>
-                    <select data-category="camera">
-                        <option value="random">Random</option>
-                    </select>
-                </div>
-                <div class="category-group">
-                    <label>Clothing</label>
-                    <select data-category="clothing">
-                        <option value="random">Random</option>
-                    </select>
-                </div>
-                <div class="category-group">
-                    <label>Expression</label>
-                    <select data-category="expression">
-                        <option value="random">Random</option>
-                    </select>
-                </div>
-            </div>
-        </div>
 
-        <div class="output">
-            <div id="promptOutput"></div>
-            <button id="copyBtn">Copy Prompt</button>
+            <div class="section">
+                <h2>Environment</h2>
+                <div class="input-group">
+                    <label>Location:</label>
+                    <select id="location">
+                        <option value="busy city street">Busy city street</option>
+                        <option value="train station platform">Train station platform</option>
+                        <option value="public park">Public park</option>
+                        <option value="shopping district">Shopping district</option>
+                        <option value="city plaza">City plaza</option>
+                        <option value="outdoor cafe">Outdoor cafe</option>
+                        <option value="subway entrance">Subway entrance</option>
+                        <option value="pedestrian walkway">Pedestrian walkway</option>
+                        <option value="bus stop">Bus stop</option>
+                        <option value="city square">City square</option>
+                        <option value="marketplace">Marketplace</option>
+                        <option value="urban park">Urban park</option>
+                        <option value="street corner">Street corner</option>
+                        <option value="downtown sidewalk">Downtown sidewalk</option>
+                        <option value="outdoor mall">Outdoor mall</option>
+                        <option value="city garden">City garden</option>
+                        <option value="public courtyard">Public courtyard</option>
+                        <option value="promenade">Promenade</option>
+                        <option value="city waterfront">City waterfront</option>
+                        <option value="outdoor market">Outdoor market</option>
+                        <option value="urban plaza">Urban plaza</option>
+                        <option value="city park path">City park path</option>
+                        <option value="public square">Public square</option>
+                        <option value="street market">Street market</option>
+                        <option value="city boulevard">City boulevard</option>
+                        <option value="outdoor shopping area">Outdoor shopping area</option>
+                        <option value="urban walkway">Urban walkway</option>
+                        <option value="city center">City center</option>
+                        <option value="public garden">Public garden</option>
+                        <option value="metropolitan street">Metropolitan street</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Lighting:</label>
+                    <select id="lighting">
+                        <option value="natural lighting">Natural lighting</option>
+                        <option value="studio lighting">Studio lighting</option>
+                        <option value="dramatic lighting">Dramatic lighting</option>
+                        <option value="soft ambient light">Soft ambient light</option>
+                        <option value="golden hour glow">Golden hour glow</option>
+                        <option value="warm lighting">Warm lighting</option>
+                        <option value="diffused sunlight">Diffused sunlight</option>
+                        <option value="gentle spotlighting">Gentle spotlighting</option>
+                        <option value="atmospheric lighting">Atmospheric lighting</option>
+                        <option value="professional lighting">Professional lighting</option>
+                        <option value="balanced lighting">Balanced lighting</option>
+                        <option value="flattering lighting">Flattering lighting</option>
+                        <option value="morning light">Morning light</option>
+                        <option value="evening glow">Evening glow</option>
+                        <option value="sunset lighting">Sunset lighting</option>
+                        <option value="indirect lighting">Indirect lighting</option>
+                        <option value="side lighting">Side lighting</option>
+                        <option value="rim lighting">Rim lighting</option>
+                        <option value="overhead lighting">Overhead lighting</option>
+                        <option value="backlit">Backlit</option>
+                        <option value="front lighting">Front lighting</option>
+                        <option value="mixed lighting">Mixed lighting</option>
+                        <option value="dynamic lighting">Dynamic lighting</option>
+                        <option value="controlled lighting">Controlled lighting</option>
+                        <option value="artistic lighting">Artistic lighting</option>
+                        <option value="mood lighting">Mood lighting</option>
+                        <option value="complementary lighting">Complementary lighting</option>
+                        <option value="enhanced lighting">Enhanced lighting</option>
+                        <option value="optimal lighting">Optimal lighting</option>
+                        <option value="perfect lighting">Perfect lighting</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Style Modifiers</h2>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="sweat" checked>
+                    <label for="sweat">Include subtle sweat details</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="skinTexture" checked>
+                    <label for="skinTexture">Enhanced skin texture</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="muscleDefinition" checked>
+                    <label for="muscleDefinition">Detailed muscle definition</label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Quality Parameters</h2>
+                <div class="input-group">
+                    <label>Quality Modifiers:</label>
+                    <input type="text" id="qualityModifiers" value="hyperrealistic, amateur style, photorealistic">
+                </div>
+                <div class="input-group">
+                    <label>Negative Prompt:</label>
+                    <input type="text" id="negativePrompt" value="unrealistic proportions, cartoon, anime, illustration">
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Model Settings</h2>
+                <div class="input-group">
+                    <label>CFG Scale:</label>
+                    <input type="number" id="cfgScale" value="7" min="1" max="20" step="0.5">
+                </div>
+                <div class="input-group">
+                    <label>Steps:</label>
+                    <input type="number" id="steps" value="30" min="20" max="100">
+                </div>
+                <div class="input-group">
+                    <label>Sampler:</label>
+                    <select id="sampler">
+                        <option value="DPM++ 2M Karras">DPM++ 2M Karras</option>
+                        <option value="Euler a">Euler a</option>
+                        <option value="DPM++ SDE Karras">DPM++ SDE Karras</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Size:</label>
+                    <select id="size">
+                        <option value="1024x1024">1024x1024</option>
+                        <option value="896x1152">896x1152</option>
+                        <option value="1152x896">1152x896</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button id="generatePrompt">Generate Prompt</button>
+                <button id="randomizePrompt" class="random-button">Randomize</button>
+            </div>
+
+            <div class="output-sections">
+                <div class="output-section">
+                    <h2>Main Prompt</h2>
+                    <textarea id="mainPromptOutput" readonly class="output-area"></textarea>
+                    <button class="copy-button" data-target="mainPromptOutput">Copy Main Prompt</button>
+                </div>
+
+                <div class="output-section">
+                    <h2>Negative Prompt</h2>
+                    <textarea id="negativePromptOutput" readonly class="output-area"></textarea>
+                    <button class="copy-button" data-target="negativePromptOutput">Copy Negative Prompt</button>
+                </div>
+
+                <div class="output-section">
+                    <h2>Additional Settings</h2>
+                    <textarea id="settingsOutput" readonly class="output-area"></textarea>
+                    <button class="copy-button" data-target="settingsOutput">Copy Settings</button>
+                </div>
+
+                <div class="output-section">
+                    <h2>Complete Prompt</h2>
+                    <textarea id="completePromptOutput" readonly class="output-area"></textarea>
+                    <button class="copy-button" data-target="completePromptOutput">Copy Complete Prompt</button>
+                </div>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

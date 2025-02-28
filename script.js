@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Define variations for each parameter
     const variations = {
+        ethnicities: [
+            "Japanese", "Korean", "Chinese", "Norwegian"
+        ],
         shotTypes: [
             "close-up portrait", "medium shot", "full body shot",
             "three-quarter view", "side profile", "candid shot",
@@ -127,41 +130,101 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function randomizeInputs() {
-        // Randomize age between 25 and 55
-        document.getElementById('age').value = Math.floor(Math.random() * (55 - 25 + 1)) + 25;
+        // Helper function to shuffle array
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Helper function to get random index with bias towards less used options
+        function getRandomIndex(length) {
+            // Use multiple random numbers to create a bias towards less common indices
+            const r1 = Math.random();
+            const r2 = Math.random();
+            const r3 = Math.random();
+            return Math.floor((r1 + r2 + r3) / 3 * length);
+        }
+
+        // Randomize age with more variation
+        const minAge = 25;
+        const maxAge = 55;
+        const ageRange = maxAge - minAge;
+        const randomFactor = Math.random();
+        // Use different distribution patterns for age
+        const age = Math.floor(
+            minAge + (
+                randomFactor < 0.3 ? Math.random() * (ageRange / 2) :
+                randomFactor < 0.6 ? ageRange / 2 + Math.random() * (ageRange / 2) :
+                Math.random() * ageRange
+            )
+        );
+        document.getElementById('age').value = age;
         
-        // Randomize select inputs
-        const shotTypeSelect = document.getElementById('shotType');
-        const buildTypeSelect = document.getElementById('buildType');
-        const clothingSelect = document.getElementById('clothing');
-        const expressionSelect = document.getElementById('expression');
-        const poseSelect = document.getElementById('pose');
-        const locationSelect = document.getElementById('location');
-        const lightingSelect = document.getElementById('lighting');
+        // Get all select elements
+        const selects = {
+            ethnicity: document.getElementById('ethnicity'),
+            shotType: document.getElementById('shotType'),
+            buildType: document.getElementById('buildType'),
+            clothing: document.getElementById('clothing'),
+            expression: document.getElementById('expression'),
+            pose: document.getElementById('pose'),
+            location: document.getElementById('location'),
+            lighting: document.getElementById('lighting'),
+            sampler: document.getElementById('sampler'),
+            size: document.getElementById('size'),
+            faceType: document.getElementById('faceType'),
+            hairStyle: document.getElementById('hairStyle')
+        };
+
+        // Randomize each select with varied distribution
+        for (const [key, select] of Object.entries(selects)) {
+            const options = Array.from(select.options);
+            const shuffledOptions = shuffleArray([...options]);
+            
+            // Use different randomization patterns for different fields
+            let selectedIndex;
+            const rand = Math.random();
+            
+            if (rand < 0.4) {
+                // Use biased random selection
+                selectedIndex = getRandomIndex(select.options.length);
+            } else if (rand < 0.7) {
+                // Use pure random selection
+                selectedIndex = Math.floor(Math.random() * select.options.length);
+            } else {
+                // Use weighted random selection favoring middle options
+                const middle = Math.floor(select.options.length / 2);
+                const offset = Math.floor(Math.random() * (select.options.length / 4));
+                selectedIndex = middle + (Math.random() < 0.5 ? -offset : offset);
+            }
+            
+            select.selectedIndex = Math.min(Math.max(0, selectedIndex), select.options.length - 1);
+        }
+
+        // Randomize checkboxes with varied probabilities
+        const checkboxes = {
+            sweat: 0.7,
+            skinTexture: 0.8,
+            muscleDefinition: 0.9
+        };
+
+        for (const [id, probability] of Object.entries(checkboxes)) {
+            // Add some variation to the probabilities
+            const variationRange = 0.2; // ±20% variation
+            const adjustedProbability = probability + (Math.random() * variationRange * 2 - variationRange);
+            document.getElementById(id).checked = Math.random() < adjustedProbability;
+        }
+
+        // Randomize model settings with more variation
+        document.getElementById('cfgScale').value = (4 + Math.pow(Math.random(), 1.5) * 6).toFixed(1); // 4-10 with bias towards lower values
+        document.getElementById('steps').value = Math.floor(20 + Math.pow(Math.random(), 1.3) * 31); // 20-50 with bias towards lower values
+        
+        // Randomize sampler and size with shuffled arrays
         const samplerSelect = document.getElementById('sampler');
         const sizeSelect = document.getElementById('size');
-        const faceTypeSelect = document.getElementById('faceType');
-        const hairStyleSelect = document.getElementById('hairStyle');
-
-        // Set random selected index for each select element
-        shotTypeSelect.selectedIndex = Math.floor(Math.random() * shotTypeSelect.options.length);
-        buildTypeSelect.selectedIndex = Math.floor(Math.random() * buildTypeSelect.options.length);
-        clothingSelect.selectedIndex = Math.floor(Math.random() * clothingSelect.options.length);
-        expressionSelect.selectedIndex = Math.floor(Math.random() * expressionSelect.options.length);
-        poseSelect.selectedIndex = Math.floor(Math.random() * poseSelect.options.length);
-        locationSelect.selectedIndex = Math.floor(Math.random() * locationSelect.options.length);
-        lightingSelect.selectedIndex = Math.floor(Math.random() * lightingSelect.options.length);
-        faceTypeSelect.selectedIndex = Math.floor(Math.random() * faceTypeSelect.options.length);
-        hairStyleSelect.selectedIndex = Math.floor(Math.random() * hairStyleSelect.options.length);
-        
-        // Randomize checkboxes
-        document.getElementById('sweat').checked = Math.random() < 0.7;
-        document.getElementById('skinTexture').checked = Math.random() < 0.8;
-        document.getElementById('muscleDefinition').checked = Math.random() < 0.9;
-
-        // Randomize model settings
-        document.getElementById('cfgScale').value = (Math.random() * 6 + 4).toFixed(1); // 4-10
-        document.getElementById('steps').value = Math.floor(Math.random() * 31 + 20); // 20-50
         samplerSelect.selectedIndex = Math.floor(Math.random() * samplerSelect.options.length);
         sizeSelect.selectedIndex = Math.floor(Math.random() * sizeSelect.options.length);
     }
@@ -173,6 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function generatePrompt() {
         const shotType = document.getElementById('shotType').options[document.getElementById('shotType').selectedIndex].value;
         const age = document.getElementById('age').value;
+        const ethnicity = document.getElementById('ethnicity').options[document.getElementById('ethnicity').selectedIndex].value;
         const faceType = document.getElementById('faceType').options[document.getElementById('faceType').selectedIndex].value;
         const hairStyle = document.getElementById('hairStyle').options[document.getElementById('hairStyle').selectedIndex].value;
         const buildType = document.getElementById('buildType').options[document.getElementById('buildType').selectedIndex].value;
@@ -199,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add shot type at the start
         if (shotType && shotType !== "undefined") promptParts.push(shotType);
         // Add non-empty components with cute and chubby description
-        if (age) promptParts.push(`A cute and chubby ${age}-year-old Japanese woman bodybuilder`);
+        if (age && ethnicity) promptParts.push(`A cute and chubby ${age}-year-old ${ethnicity} woman bodybuilder`);
         if (faceType && faceType !== "undefined") promptParts.push(faceType);
         if (hairStyle && hairStyle !== "undefined") promptParts.push(hairStyle);
         promptParts.push(getRandomItem(variations.bodyFeatures));
